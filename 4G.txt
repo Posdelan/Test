@@ -1,0 +1,5 @@
+PMRT.TB_MRT_WG_COMM_IMPORT_150402 TT --进接口表
+
+PTEMP.HS_RECO_PLANS_LOG  --用户级 助销系统 点击"接受推荐"按钮
+
+PRC_MRT_INTEGRAL_DEV_ALL 渠道分等分级积分
