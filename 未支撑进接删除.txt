@@ -1,0 +1,20 @@
+--查询系统计算的紧密型外包佣金
+select t.areaid,t.remark,count(1),sum(fee)/100 from  pmrt.tb_mrt_wg_comm_import_to_sett t
+ WHERE t.agentid in (select T2.Bss_Chnl_Code
+                       from PTEMP.CIM_AGENT_COMM_PAY_CONTROL t1,
+                            PCDE.TB_CDE_CHANL_CODE           T2,
+                            PMRT.TB_MRT_CRE_CHANL_CODE       T3
+                      WHERE 
+t1.agentid=t2.bss_chan_code
+and T2.GROUP_ID_1 = T3.GROUP_ID_1 
+and t3.deal_date = 201504)
+GROUP BY  t.areaid,t.remark
+
+--删除系统计算的紧密型外包佣金
+DELETE FROM   pmrt.tb_mrt_wg_comm_import_to_sett t
+ WHERE t.agentid in (select T2.Bss_Chnl_Code
+                       from PTEMP.CIM_AGENT_COMM_PAY_CONTROL t1,
+                            PCDE.TB_CDE_CHANL_CODE           T2,
+                            PMRT.TB_MRT_CRE_CHANL_CODE       T3
+                      WHERE T2.GROUP_ID_1 = T3.GROUP_ID_1 
+and t3.deal_date = 201504)
